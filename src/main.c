@@ -155,6 +155,7 @@ void diff_to_etoh(double diff) {
 
 void diff_to_tier(double diff) {
     double converted = (diff * log(2.0 * pow(16.0, 1.0/11.0))) / log(2.0);
+
     printf("%.2lf (EToH, ", diff);
     print_diff_as_name(diff);
     printf(") -> %.2lf (Tiered)\n", converted);

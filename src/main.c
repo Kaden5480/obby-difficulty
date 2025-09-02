@@ -140,7 +140,7 @@ void print_diff_as_name(double n) {
             printf(" Unreal");
             break;
         case 14:
-            printf(" nil");
+            printf(" Nil");
             break;
     }
 }

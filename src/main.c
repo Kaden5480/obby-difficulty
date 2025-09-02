@@ -58,7 +58,7 @@ void print_diff_as_name(double n) {
     int whole = (int) floored;
     float decimal = n - floored;
 
-    if (n < 1 || n >= 16) {
+    if (n < 0 || n >= 16) {
         printf("N/A");
         return;
     }
@@ -100,6 +100,9 @@ void print_diff_as_name(double n) {
 
     // Process whole part
     switch (whole) {
+        case 0:
+            printf(" Effortless");
+            break;
         case 1:
             printf(" Easy");
             break;

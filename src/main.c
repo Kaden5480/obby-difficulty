@@ -70,28 +70,28 @@ void print_diff_as_name(double n) {
     else if (decimal >= 0.01 && decimal <= 0.11) {
         printf("Bottom");
     }
-    else if (decimal >= 0.12 && decimal <= 0.22) {
+    else if (decimal > 0.11 && decimal <= 0.22) {
         printf("Bottom-Low");
     }
-    else if (decimal >= 0.23 && decimal <= 0.33) {
+    else if (decimal > 0.22 && decimal <= 0.33) {
         printf("Low");
     }
-    else if (decimal >= 0.34 && decimal <= 0.44) {
+    else if (decimal > 0.33 && decimal <= 0.44) {
         printf("Low-Mid");
     }
-    else if (decimal >= 0.45 && decimal <= 0.55) {
+    else if (decimal > 0.44 && decimal <= 0.55) {
         printf("Mid");
     }
-    else if (decimal >= 0.56 && decimal <= 0.66) {
+    else if (decimal > 0.55 && decimal <= 0.66) {
         printf("Mid-High");
     }
-    else if (decimal >= 0.67 && decimal <= 0.77)  {
+    else if (decimal > 0.66 && decimal <= 0.77)  {
         printf("High");
     }
-    else if (decimal >= 0.78 && decimal <= 0.88) {
+    else if (decimal > 0.77 && decimal <= 0.88) {
         printf("High-Peak");
     }
-    else if (decimal >= 0.89 && decimal <= 0.99) {
+    else if (decimal > 0.88) {
         printf("Peak");
     }
     else {

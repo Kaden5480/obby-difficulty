@@ -1,5 +1,5 @@
-#ifndef OBBY_DIFF_CALC_H
-#define OBBY_DIFF_CALC_H
+#ifndef OBBY_DIFF_LIB_CALC_H
+#define OBBY_DIFF_LIB_CALC_H
 
 #include <math.h>
 #include <stdio.h>
@@ -47,4 +47,4 @@ double harder_tier(double a, double b);
  */
 void print_etoh_as_name(double n);
 
-#endif // OBBY_DIFF_CALC_H
+#endif // OBBY_DIFF_LIB_CALC_H

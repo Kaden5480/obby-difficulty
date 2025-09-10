@@ -3,7 +3,7 @@ CFLAGS ?= -march=native -O2 -pipe
 
 CFLAGS := $(CFLAGS) -Wall -Wextra -Werror
 
-OBJS := src/main.o
+OBJS := src/main.o src/args.o src/calc.o
 
 .PHONY: build clean
 
@@ -13,7 +13,7 @@ clean:
 	rm -f $(OBJS) obby-diff
 
 obby-diff: $(OBJS)
-	$(CC) $(CFLAGS) -Xlinker --strip-all -o $@ $<
+	$(CC) $(CFLAGS) -Xlinker --strip-all -o $@ $^
 
 src/%.o: src/%.c
 	$(CC) $(CFLAGS) -c -o $@ $<

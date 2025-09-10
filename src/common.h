@@ -1,0 +1,6 @@
+#ifndef OBBY_DIFF_COMMON_H
+#define OBBY_DIFF_COMMON_H
+
+#define VERSION "0.1.0"
+
+#endif // OBBY_DIFF_COMMON_H

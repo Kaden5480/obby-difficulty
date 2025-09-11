@@ -6,8 +6,7 @@ CFLAGS := $(CFLAGS) -Wall -Wextra -Werror
 OBJS := src/main.o \
 		src/args.o \
 		src/lib/calc.o \
-		src/lib/display.o \
-		src/lib/string.o
+		src/lib/display.o
 
 .PHONY: build clean
 

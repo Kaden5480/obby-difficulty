@@ -1,43 +1,63 @@
 #include "display.h"
 
-void show_harder_etoh(Args args, double a, double b) {
+void show_harder_etoh(int accuracy, double a, double b) {
     double result = harder_etoh(a, b);
-    (void) args;
 
-    printf("%.2lf (", a);
+    printf("%.*lf (", accuracy, a);
     print_etoh_as_name(a);
-    printf(") is %.2lfx harder than %.2lf (", result, b);
+    printf(
+        ") is %.*lfx harder than %.*lf (",
+        accuracy, result,
+        accuracy, b
+    );
     print_etoh_as_name(b);
     printf(")\n");
 }
 
-void show_harder_tier(Args args, double a, double b) {
+void show_harder_tier(int accuracy, double a, double b) {
     double result = harder_tier(a, b);
-    (void) args;
 
-    printf("%.2lf is %.2lfx harder than %.2lf\n", a, result, b);
+    printf(
+        "%.*lf is %.*lfx harder than %.*lf\n",
+        accuracy, a,
+        accuracy, result,
+        accuracy, b
+    );
 }
 
-void show_etoh_to_tier(Args args, double n) {
+void show_etoh_to_tier(int accuracy, double n) {
     double converted = etoh_to_tier(n);
-    (void) args;
 
-    printf("%.2lf (EToH, ", n);
+    printf("%.*lf (EToH, ", accuracy, n);
     print_etoh_as_name(n);
-    printf(") -> %.2lf (Tiered)\n", converted);
+    printf(") -> %.*lf (Tiered)\n", accuracy, converted);
 }
 
-void show_tier_to_etoh(Args args, double n) {
+void show_tier_to_etoh(int accuracy, double n) {
     double converted = tier_to_etoh(n);
-    (void) args;
 
-    printf("%.2lf (Tiered) -> %.2lf (EToH, ", n, converted);
+    printf(
+        "%.*lf (Tiered) -> %.*lf (EToH, ",
+        accuracy, n,
+        accuracy, converted
+    );
     print_etoh_as_name(converted);
     puts(")");
 }
 
 void show_output(Args args) {
+    int accuracy = 2;
     double a = 0.0, b = 0.0;
+
+    if (args.accuracy != NULL) {
+        accuracy = atoi(args.accuracy);
+
+        if (accuracy < 0 || accuracy > 16) {
+            fprintf(stderr, "Accuracy must be between 0 and 16 (inclusive)\n");
+            Args_show_usage(args);
+            exit(1);
+        }
+    }
 
     if (args.a != NULL) {
         a = strtod(args.a, NULL);
@@ -49,18 +69,18 @@ void show_output(Args args) {
 
     if (args.harder == true) {
         if (args.is_etoh == true) {
-            show_harder_etoh(args, a, b);
+            show_harder_etoh(accuracy, a, b);
         }
         else {
-            show_harder_tier(args, a, b);
+            show_harder_tier(accuracy, a, b);
         }
         return;
     }
 
     if (args.is_etoh == true) {
-        show_etoh_to_tier(args, a);
+        show_etoh_to_tier(accuracy, a);
     }
     else {
-        show_tier_to_etoh(args, a);
+        show_tier_to_etoh(accuracy, a);
     }
 }

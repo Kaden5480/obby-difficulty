@@ -14,6 +14,9 @@ typedef struct Args {
     int argc;
     char **argv;
 
+    // How accurately to display values
+    char *accuracy;
+
     // Input difficulties
     char *a;
     char *b;

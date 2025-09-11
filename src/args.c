@@ -7,6 +7,7 @@ void Args_show_usage(Args args) {
         "  %s [option...] <number...>\n"
         "Options:\n"
         "  -h --help              Display usage\n"
+        "  -a --accuracy <number> The number of decimal places to display\n"
         "  -H --harder <a> <b>    How much harder difficulty `a` is than `b`\n"
         "  -e --etoh              The input is an EToH difficulty (default)\n"
         "  -t --tier              The input is a tiered obby difficulty\n",
@@ -20,6 +21,7 @@ void Args_from(Args *args, int argc, char *argv[]) {
     // Initialize
     args->argc = argc;
     args->argv = argv;
+    args->accuracy = NULL;
     args->a = NULL;
     args->b = NULL;
     args->harder = false;
@@ -43,6 +45,17 @@ void Args_from(Args *args, int argc, char *argv[]) {
         if (strcmp(arg, "-h") == 0 || strcmp(arg, "--help") == 0) {
             Args_show_usage(*args);
             exit(0);
+        }
+        else if (strcmp(arg, "-a") == 0 || strcmp(arg, "--accuracy") == 0) {
+            if (i + 1 >= argc) {
+                fprintf(stderr, "Expected an accuracy to be provided\n");
+                Args_show_usage(*args);
+                exit(1);
+            }
+
+            i++;
+            arg = argv[i];
+            args->accuracy = arg;
         }
         else if (strcmp(arg, "-H") == 0 || strcmp(arg, "--harder") == 0) {
             args->harder = true;

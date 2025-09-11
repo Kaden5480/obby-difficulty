@@ -8,39 +8,39 @@
  * Displays how much harder difficulty `a` is than `b`.
  * (EToH)
  *
- * @param args The parsed command line arguments
+ * @param accuracy The accuracy to display values with
  * @param a The first difficulty
  * @param b The second difficulty
  */
-void show_harder_etoh(Args args, double a, double b);
+void show_harder_etoh(int accuracy, double a, double b);
 
 /**
  * Displays how much harder difficulty `a` is than `b`.
  * (Tiered)
  *
- * @param args The parsed command line arguments
+ * @param accuracy The accuracy to display values with
  * @param a The first difficulty
  * @param b The second difficulty
  */
-void show_harder_tier(Args args, double a, double b);
+void show_harder_tier(int accuracy, double a, double b);
 
 /**
  * Displays the conversion for an EToH difficulty as
  * a tiered difficulty.
  *
- * @param args The parsed command line arguments
+ * @param accuracy The accuracy to display values with
  * @param n The EToH difficulty
  */
-void show_etoh_to_tier(Args args, double n);
+void show_etoh_to_tier(int accuracy, double n);
 
 /**
  * Displays the conversion for a tiered difficulty as
  * an EToH difficulty.
  *
- * @param args The parsed command line arguments
+ * @param accuracy The accuracy to display values with
  * @param n The tiered difficulty
  */
-void show_tier_to_etoh(Args args, double n);
+void show_tier_to_etoh(int accuracy, double n);
 
 /**
  * Displays the output for the provided arguments.

@@ -12,12 +12,11 @@ double tier_to_etoh(double n) {
 
 double harder_etoh(double a, double b) {
     double diff = a - b;
-    double factor = log(2.0 * pow(16.0, 1.0/11.0)) / log(2.0);
+    double base = 2 * pow(16.0, 1.0/11.0);
 
-    // For EToH difficulties, you have to use an extra factor
-    // because each difficulty doesn't scale as nicely as
-    // tiered obbies
-    return pow(2.0, diff * factor);
+    // Difficulties in EToH don't scale nicely, so a different
+    // base has to be used
+    return pow(base, diff);
 }
 
 double harder_tier(double a, double b) {

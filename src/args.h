@@ -8,6 +8,20 @@
 
 #include "common.h"
 
+/**
+ * Which mode to use.
+ */
+typedef enum Mode {
+    // Convert between EToH/Tiered difficulties
+    MODE_CONVERT,
+
+    // How much harder is difficulty `a` than `b`
+    MODE_HARDER,
+
+    // Which difficulty is `t` times harder than `n`
+    MODE_WHICH,
+} Mode;
+
 typedef struct Args {
     // Number of command line arguments
     // and the arguments
@@ -22,7 +36,7 @@ typedef struct Args {
     char *b;
 
     // Whether to check if `b` is harder than `a`
-    bool harder;
+    Mode mode;
 
     // Whether the inputs are EToH difficulties
     bool is_etoh;

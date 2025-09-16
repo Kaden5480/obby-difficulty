@@ -12,7 +12,7 @@ double tier_to_etoh(double n) {
 
 double harder_etoh(double a, double b) {
     double diff = a - b;
-    double base = 2 * pow(16.0, 1.0/11.0);
+    double base = 2.0 * pow(16.0, 1.0/11.0);
 
     // Difficulties in EToH don't scale nicely, so a different
     // base has to be used
@@ -25,6 +25,16 @@ double harder_tier(double a, double b) {
     // Luckily tiers are easy, each difficulty is twice
     // as hard as the previous
     return pow(2.0, diff);
+}
+
+double which_etoh(double n, double t) {
+    double base = 2.0 * pow(16.0, 1.0/11.0);
+
+    return n + (log(t) / log(base));
+}
+
+double which_tier(double n, double t) {
+    return n + (log(t) / log(2.0));
 }
 
 void print_etoh_as_name(double n) {

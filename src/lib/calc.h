@@ -22,7 +22,7 @@ double tier_to_etoh(double n);
 
 /**
  * Calculates how many times harder `a` is than `b`.
- * (EToH difficulties)
+ * (EToH)
  *
  * @param a The first difficulty
  * @param b The second difficulty
@@ -32,13 +32,33 @@ double harder_etoh(double a, double b);
 
 /**
  * Calculates how many times harder `a` is than `b`.
- * (Tiered difficulties)
+ * (Tiered)
  *
  * @param a The first difficulty
  * @param b The second difficulty
  * @returns How much harder `a` is than `b`
  */
 double harder_tier(double a, double b);
+
+/**
+ * Calculates which difficulty is `t` times harder than `n`.
+ * (EToH)
+ *
+ * @param n The difficulty
+ * @param t The times
+ * @returns The difficulty which is `t` times harder than `n`
+ */
+double which_etoh(double n, double t);
+
+/**
+ * Calculates which difficulty is `t` times harder than `n`.
+ * (Tiered)
+ *
+ * @param n The difficulty
+ * @param t The times
+ * @returns The difficulty which is `t` times harder than `n`
+ */
+double which_tier(double n, double t);
 
 /**
  * Prints an EToH difficulty as a name.

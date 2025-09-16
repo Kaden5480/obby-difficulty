@@ -5,6 +5,24 @@
 #include "calc.h"
 
 /**
+ * Displays the conversion for an EToH difficulty as
+ * a tiered difficulty.
+ *
+ * @param accuracy The accuracy to display values with
+ * @param n The EToH difficulty
+ */
+void show_etoh_to_tier(int accuracy, double n);
+
+/**
+ * Displays the conversion for a tiered difficulty as
+ * an EToH difficulty.
+ *
+ * @param accuracy The accuracy to display values with
+ * @param n The tiered difficulty
+ */
+void show_tier_to_etoh(int accuracy, double n);
+
+/**
  * Displays how much harder difficulty `a` is than `b`.
  * (EToH)
  *
@@ -25,22 +43,24 @@ void show_harder_etoh(int accuracy, double a, double b);
 void show_harder_tier(int accuracy, double a, double b);
 
 /**
- * Displays the conversion for an EToH difficulty as
- * a tiered difficulty.
+ * Displays which difficulty is `t` times harder than `n`.
+ * (EToH)
  *
  * @param accuracy The accuracy to display values with
- * @param n The EToH difficulty
+ * @param n The difficulty
+ * @param t The times harder
  */
-void show_etoh_to_tier(int accuracy, double n);
+void show_which_etoh(int accuracy, double n, double t);
 
 /**
- * Displays the conversion for a tiered difficulty as
- * an EToH difficulty.
+ * Displays which difficulty is `t` times harder than `n`.
+ * (Tiered)
  *
  * @param accuracy The accuracy to display values with
- * @param n The tiered difficulty
+ * @param n The difficulty
+ * @param t The times harder
  */
-void show_tier_to_etoh(int accuracy, double n);
+void show_which_tier(int accuracy, double n, double t);
 
 /**
  * Displays the output for the provided arguments.

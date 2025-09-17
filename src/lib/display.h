@@ -5,6 +5,15 @@
 #include "calc.h"
 
 /**
+ * Parses a double from a string.
+ *
+ * @param str The string to parse a double from
+ * @param n Where to store the result
+ * @returns True if successful, false otherwise
+ */
+bool parse_double(char *str, double *n);
+
+/**
  * Displays the conversion for an EToH difficulty as
  * a tiered difficulty.
  *

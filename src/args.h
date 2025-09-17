@@ -1,6 +1,7 @@
 #ifndef OBBY_DIFF_ARGS_H
 #define OBBY_DIFF_ARGS_H
 
+#include <ctype.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -41,6 +42,17 @@ typedef struct Args {
     // Whether the inputs are EToH difficulties
     bool is_etoh;
 } Args;
+
+/**
+ * Trims whitespace from both ends of a string
+ *
+ * NOTE: This modifies the string in place, it doesn't allocate
+ * any extra memory.
+ *
+ * @param str The string to trim
+ * @returns A new pointer to the beginning of the string
+ */
+char *str_trim(char *str);
 
 /**
  * Shows the help for this program.

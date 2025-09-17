@@ -1,5 +1,23 @@
 #include "display.h"
 
+// Parsing
+bool parse_double(char *str, double *n) {
+    char *end = NULL;
+    size_t str_len = strlen(str);
+
+    if (str_len < 1) {
+        return false;
+    }
+
+    *n = strtod(str, &end);
+
+    if (str + str_len != end) {
+        return false;
+    }
+
+    return true;
+}
+
 // Convert
 void show_etoh_to_tier(int accuracy, double n) {
     double converted = etoh_to_tier(n);
@@ -88,11 +106,17 @@ void show_output(Args args) {
     }
 
     if (args.a != NULL) {
-        a = strtod(args.a, NULL);
+        if (parse_double(args.a, &a) == false) {
+            fprintf(stderr, "Invalid number: %s\n", args.a);
+            exit(1);
+        }
     }
 
     if (args.b != NULL) {
-        b = strtod(args.b, NULL);
+        if (parse_double(args.b, &b) == false) {
+            fprintf(stderr, "Invalid number: %s\n", args.b);
+            exit(1);
+        }
     }
 
     switch (args.mode) {

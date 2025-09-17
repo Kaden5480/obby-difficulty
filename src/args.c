@@ -1,5 +1,22 @@
 #include "args.h"
 
+char *str_trim(char *str) {
+    char *end = str + strlen(str) - 1;
+
+    // Beginning
+    while (*str != '\0' && isspace(*str) != 0) {
+        str++;
+    }
+
+    // End
+    while (end >= str && isspace(*end) != 0) {
+        *end = '\0';
+        end--;
+    }
+
+    return str;
+}
+
 void Args_show_usage(Args args) {
     printf(
         "%s, v%s\n"
@@ -62,7 +79,7 @@ void Args_from(Args *args, int argc, char *argv[]) {
 
             i++;
             arg = argv[i];
-            args->accuracy = arg;
+            args->accuracy = str_trim(arg);
         }
         else if (strcmp(arg, "-H") == 0 || strcmp(arg, "--harder") == 0) {
             args->mode = MODE_HARDER;
@@ -71,10 +88,10 @@ void Args_from(Args *args, int argc, char *argv[]) {
             args->mode = MODE_WHICH;
         }
         else if (args->a == NULL) {
-            args->a = arg;
+            args->a = str_trim(arg);
         }
         else if (args->mode != MODE_CONVERT && args->b == NULL) {
-            args->b = arg;
+            args->b = str_trim(arg);
         }
         else {
             fprintf(stderr, "Unexpected input: %s\n", arg);

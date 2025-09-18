@@ -52,6 +52,20 @@ void cmd_diff_parse(int argc, char **argv, CmdDiff *store);
 void cmd_diff_run(int argc, char **argv);
 
 /**
+ * Displays tables of converting from one difficulty to another.1
+ */
+typedef struct CmdTable {
+    int accuracy;
+    bool from_etoh;
+    double upper;
+    double lower;
+    double increment;
+} CmdTable;
+void cmd_table_usage(const char *program);
+void cmd_table_parse(int argc, char **argv, CmdTable *store);
+void cmd_table_run(int argc, char **argv);
+
+/**
  * Calculates which difficulty is `t` times harder than the provided one.
  */
 typedef struct CmdWhich {

@@ -57,8 +57,8 @@ void cmd_diff_run(int argc, char **argv);
 typedef struct CmdTable {
     int accuracy;
     bool from_etoh;
-    double upper;
     double lower;
+    double upper;
     double increment;
 } CmdTable;
 void cmd_table_usage(const char *program);

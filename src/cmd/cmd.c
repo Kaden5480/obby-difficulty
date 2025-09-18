@@ -200,9 +200,9 @@ void cmd_table_usage(const char *program) {
         "  -a --accuracy <n>  Display this many decimal places (Default: 2)\n"
         "  -e --etoh          Convert from EToH difficulty (Default)\n"
         "  -t --tier          Convert from tiered difficulty\n"
-        "  -i --increment <n> Increment by this much (Default: 1.0)\n"
+        "  -l --lower <n>     Use this as a lower limit (Default: 0.0)\n"
         "  -u --upper <n>     Use this as an upper limit (Default: 15.0)\n"
-        "  -l --lower <n>     Use this as a lower limit (Default: 0.0)\n",
+        "  -i --increment <n> Increment by this much (Default: 1.0)\n",
         program, VERSION, program
     );
 }
@@ -231,8 +231,8 @@ void cmd_table_parse(int argc, char **argv, CmdTable *store) {
         else if (strcmp(arg, "-t") == 0 || strcmp(arg, "--tier") == 0) {
             store->from_etoh = false;
         }
-        else if (strcmp(arg, "-i") == 0 || strcmp(arg, "--increment") == 0) {
-            if (parse_arg_double(argc, argv, i++, &(store->increment)) == false) {
+        else if (strcmp(arg, "-l") == 0 || strcmp(arg, "--lower") == 0) {
+            if (parse_arg_double(argc, argv, i++, &(store->lower)) == false) {
                 cmd_table_usage(program);
                 exit(1);
             }
@@ -243,8 +243,8 @@ void cmd_table_parse(int argc, char **argv, CmdTable *store) {
                 exit(1);
             }
         }
-        else if (strcmp(arg, "-l") == 0 || strcmp(arg, "--lower") == 0) {
-            if (parse_arg_double(argc, argv, i++, &(store->lower)) == false) {
+        else if (strcmp(arg, "-i") == 0 || strcmp(arg, "--increment") == 0) {
+            if (parse_arg_double(argc, argv, i++, &(store->increment)) == false) {
                 cmd_table_usage(program);
                 exit(1);
             }
@@ -262,8 +262,8 @@ void cmd_table_run(int argc, char **argv) {
     CmdTable store = {
         .accuracy = CMD_DEFAULT_ACCURACY,
         .from_etoh = CMD_DEFAULT_IS_ETOH,
-        .upper = 15.0,
         .lower = 0.0,
+        .upper = 15.0,
         .increment = 1.0,
     };
 

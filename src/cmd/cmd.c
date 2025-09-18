@@ -305,7 +305,7 @@ void cmd_which_usage(const char *program) {
     printf(
         "%s, %s\n"
         "Usage:\n"
-        "  %s which [option...] <n> <t>\n"
+        "  %s which [option...] <t> <n>\n"
         "Description:\n"
         "  Calculates which difficulty is `t` times harder than `n`\n"
         "Options:\n"
@@ -320,7 +320,7 @@ void cmd_which_usage(const char *program) {
 void cmd_which_parse(int argc, char **argv, CmdWhich *store) {
     const char *program = argv[0];
     char *arg = NULL;
-    char *n = NULL, *t = NULL;
+    char *t = NULL, *n = NULL;
 
     // Skip program and subcommand
     for (int i = 2; i < argc; i++) {
@@ -342,11 +342,11 @@ void cmd_which_parse(int argc, char **argv, CmdWhich *store) {
         else if (strcmp(arg, "-t") == 0 || strcmp(arg, "--tier") == 0) {
             store->is_etoh = false;
         }
-        else if (n == NULL) {
-            n = arg;
-        }
         else if (t == NULL) {
             t = arg;
+        }
+        else if (n == NULL) {
+            n = arg;
         }
         else {
             fprintf(stderr, "Unexpected argument: %s\n", arg);
@@ -356,15 +356,15 @@ void cmd_which_parse(int argc, char **argv, CmdWhich *store) {
     }
 
     // Check args
-    if (n == NULL || t == NULL) {
-        fprintf(stderr, "Expected numbers `n` and `t`\n");
+    if (t == NULL || n == NULL) {
+        fprintf(stderr, "Expected numbers `t` and `n`\n");
         cmd_which_usage(program);
         exit(1);
     }
 
     if (
-        parse_double(n, &(store->n)) == false
-        || parse_double(t, &(store->t)) == false
+        parse_double(t, &(store->t)) == false
+        || parse_double(n, &(store->n)) == false
     ) {
         cmd_which_usage(program);
         exit(1);
@@ -406,7 +406,7 @@ void cmd_usage(const char *program) {
         "  convert <number...>  Converts between EToH and tiered difficulties\n"
         "  diff <a> <b>         Calculates how much harder difficulty `a` is than difficulty `b`\n"
         "  table                Displays a table of EToH and tiered difficulties\n"
-        "  which <n> <t>        Calculates which difficulty is `t` times harder than `n`\n",
+        "  which <t> <n>        Calculates which difficulty is `t` times harder than `n`\n",
         program, VERSION, program
     );
 }

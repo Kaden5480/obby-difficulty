@@ -10,7 +10,7 @@ double tier_to_etoh(double n) {
         / log(2.0 * pow(16.0, 1.0/11.0));
 }
 
-double harder_etoh(double a, double b) {
+double diff_etoh(double a, double b) {
     double diff = a - b;
     double base = 2.0 * pow(16.0, 1.0/11.0);
 
@@ -19,7 +19,7 @@ double harder_etoh(double a, double b) {
     return pow(base, diff);
 }
 
-double harder_tier(double a, double b) {
+double diff_tier(double a, double b) {
     double diff = a - b;
 
     // Luckily tiers are easy, each difficulty is twice

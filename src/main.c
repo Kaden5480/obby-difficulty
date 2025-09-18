@@ -1,8 +1,5 @@
-#include "lib/display.h"
+#include "cmd/cmd.h"
 
 int main(int argc, char *argv[]) {
-    Args args = {0};
-
-    Args_from(&args, argc, argv);
-    show_output(args);
+    cmd_run(argc, argv);
 }

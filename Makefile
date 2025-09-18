@@ -4,7 +4,8 @@ CFLAGS ?= -march=native -O2 -pipe
 CFLAGS := $(CFLAGS) -Wall -Wextra -Werror
 
 OBJS := src/main.o \
-		src/args.o \
+		src/cmd/cmd.o \
+		src/cmd/parse.o \
 		src/lib/calc.o \
 		src/lib/display.o
 

@@ -28,7 +28,7 @@ double tier_to_etoh(double n);
  * @param b The second difficulty
  * @returns How much harder `a` is than `b`
  */
-double harder_etoh(double a, double b);
+double diff_etoh(double a, double b);
 
 /**
  * Calculates how many times harder `a` is than `b`.
@@ -38,7 +38,7 @@ double harder_etoh(double a, double b);
  * @param b The second difficulty
  * @returns How much harder `a` is than `b`
  */
-double harder_tier(double a, double b);
+double diff_tier(double a, double b);
 
 /**
  * Calculates which difficulty is `t` times harder than `n`.

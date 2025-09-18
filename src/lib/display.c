@@ -1,23 +1,5 @@
 #include "display.h"
 
-// Parsing
-bool parse_double(char *str, double *n) {
-    char *end = NULL;
-    size_t str_len = strlen(str);
-
-    if (str_len < 1) {
-        return false;
-    }
-
-    *n = strtod(str, &end);
-
-    if (str + str_len != end) {
-        return false;
-    }
-
-    return true;
-}
-
 // Convert
 void show_etoh_to_tier(int accuracy, double n) {
     double converted = etoh_to_tier(n);
@@ -39,9 +21,9 @@ void show_tier_to_etoh(int accuracy, double n) {
     puts(")");
 }
 
-// Harder
-void show_harder_etoh(int accuracy, double a, double b) {
-    double result = harder_etoh(a, b);
+// Diff
+void show_diff_etoh(int accuracy, double a, double b) {
+    double result = diff_etoh(a, b);
 
     printf("%.*lf (", accuracy, a);
     print_etoh_as_name(a);
@@ -54,8 +36,8 @@ void show_harder_etoh(int accuracy, double a, double b) {
     printf(")\n");
 }
 
-void show_harder_tier(int accuracy, double a, double b) {
-    double result = harder_tier(a, b);
+void show_diff_tier(int accuracy, double a, double b) {
+    double result = diff_tier(a, b);
 
     printf(
         "%.*lf is %.*lfx harder than %.*lf\n",
@@ -89,64 +71,4 @@ void show_which_tier(int accuracy, double n, double t) {
         accuracy, t,
         accuracy, n
     );
-}
-
-void show_output(Args args) {
-    int accuracy = 2;
-    double a = 0.0, b = 0.0;
-
-    if (args.accuracy != NULL) {
-        accuracy = atoi(args.accuracy);
-
-        if (accuracy < 0 || accuracy > 16) {
-            fprintf(stderr, "Accuracy must be between 0 and 16 (inclusive)\n");
-            Args_show_usage(args);
-            exit(1);
-        }
-    }
-
-    if (args.a != NULL) {
-        if (parse_double(args.a, &a) == false) {
-            fprintf(stderr, "Invalid number: %s\n", args.a);
-            exit(1);
-        }
-    }
-
-    if (args.b != NULL) {
-        if (parse_double(args.b, &b) == false) {
-            fprintf(stderr, "Invalid number: %s\n", args.b);
-            exit(1);
-        }
-    }
-
-    switch (args.mode) {
-        case MODE_CONVERT: {
-            if (args.is_etoh == true) {
-                show_etoh_to_tier(accuracy, a);
-            }
-            else {
-                show_tier_to_etoh(accuracy, a);
-            }
-        } break;
-        case MODE_HARDER: {
-            if (args.is_etoh == true) {
-                show_harder_etoh(accuracy, a, b);
-            }
-            else {
-                show_harder_tier(accuracy, a, b);
-            }
-        } break;
-        case MODE_WHICH: {
-            if (args.is_etoh == true) {
-                show_which_etoh(accuracy, a, b);
-            }
-            else {
-                show_which_tier(accuracy, a, b);
-            }
-        } break;
-        default: {
-            fprintf(stderr, "Invalid mode: %d\n", args.mode);
-            exit(1);
-        } break;
-    }
 }

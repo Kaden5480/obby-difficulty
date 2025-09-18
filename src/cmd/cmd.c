@@ -201,7 +201,7 @@ void cmd_table_usage(const char *program) {
         "  -e --etoh          Convert from EToH difficulty (Default)\n"
         "  -t --tier          Convert from tiered difficulty\n"
         "  -i --increment <n> Increment by this much (Default: 1.0)\n"
-        "  -u --upper <n>     Use this as an upper limit (Default: 16.0)\n"
+        "  -u --upper <n>     Use this as an upper limit (Default: 15.0)\n"
         "  -l --lower <n>     Use this as a lower limit (Default: 0.0)\n",
         program, VERSION, program
     );
@@ -262,7 +262,7 @@ void cmd_table_run(int argc, char **argv) {
     CmdTable store = {
         .accuracy = CMD_DEFAULT_ACCURACY,
         .from_etoh = CMD_DEFAULT_IS_ETOH,
-        .upper = 16.0,
+        .upper = 15.0,
         .lower = 0.0,
         .increment = 1.0,
     };
@@ -290,7 +290,7 @@ void cmd_table_run(int argc, char **argv) {
         store.lower = temp;
     }
 
-    for (double i = store.lower; i < store.upper; i += store.increment) {
+    for (double i = store.lower; i <= store.upper; i += store.increment) {
         if (store.from_etoh == true) {
             show_etoh_to_tier(store.accuracy, i);
         }
